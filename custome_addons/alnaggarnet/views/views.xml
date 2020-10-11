@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+<!--
+        <record model="ir.ui.view" id="alnaggarnet.list">
+            <field name="name">Client List</field>
+            <field name="model">alnaggarnet.client</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+-->
+
+        <!-- actions opening views on models -->
+<!--
+        <record model="ir.actions.act_window" id="alnaggarnet.action_window">
+            <field name="name">alnaggarnet window</field>
+            <field name="res_model">alnaggarnet.alnaggarnet</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+-->
+
+        <!-- server action to the one above -->
+<!--
+        <record model="ir.actions.server" id="alnaggarnet.action_server">
+            <field name="name">alnaggarnet server</field>
+            <field name="model_id" ref="model_alnaggarnet_alnaggarnet"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                "type": "ir.actions.act_window",
+                "view_mode": "tree,form",
+                "res_model": model._name,
+                }
+            </field>
+        </record>
+-->
+
+        <!-- Top menu item -->
+<!--        <menuitem name="alnaggarnet" id="alnaggarnet.menu_root"/>-->
+        <!-- menu categories -->
+<!--        <menuitem name="Menu 1" id="alnaggarnet.menu_1" parent="alnaggarnet.menu_root"/>-->
+<!--        <menuitem name="Menu 2" id="alnaggarnet.menu_2" parent="alnaggarnet.menu_root"/>-->
+        <!-- actions -->
+<!--        <menuitem name="List" id="alnaggarnet.menu_1_list" parent="alnaggarnet.menu_1"-->
+<!--                  action="alnaggarnet.action_window"/>-->
+<!--        <menuitem name="Server to list" id="alnaggarnet" parent="alnaggarnet.menu_2"-->
+<!--                  action="alnaggarnet.action_server"/>-->
+    </data>
+</odoo>

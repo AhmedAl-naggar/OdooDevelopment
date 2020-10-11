@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!--    Form View-->
+    <record model="ir.ui.view" id="client_form_view">
+        <field name="name">client.form</field>
+        <field name="model">alnaggarnet.client</field>
+        <field name="arch" type="xml">
+            <form string="Client Form">
+                <sheet>
+                    <group>
+                        <div style="border:2px solid #DDD;padding:5px;margin-right:5px">
+                            <group>
+                                <h2>Network Data</h2>
+                                <field name="package_price" placeholder="120 EGP"/>
+                                <field name="max_speed" placeholder="700 KB"/>
+                                <field name="mac_address" placeholder="xx:xx:xx:xx:xx:xx"/>
+                                <field name="wifi_name"/>
+                                <field name="wifi_password"/>
+                                <field name="router_password"/>
+                                <field name="start_date"/>
+                            </group>
+                        </div>
+                        <div style="border:2px solid #DDD;padding:5px;margin-right:5px">
+                            <group>
+                                <h2 class="led">Personal Data</h2>
+                                <field name="name"/>
+                                <field name="phone"/>
+                                <field name="date_of_birth"/>
+                                <field name="address"/>
+                            </group>
+                        </div>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes" placeholder="Add any extra info about the cleint here ...."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    Tree View-->
+    <record model="ir.ui.view" id="client_tree_view">
+        <field name="name">client.tree</field>
+        <field name="model">alnaggarnet.client</field>
+        <field name="arch" type="xml">
+            <tree string="Client Tree" decoration-info="max_speed&lt;1024" decoration-danger="max_speed&gt;700">
+                <field name="name"/>
+                <field name="mac_address"/>
+                <field name="max_speed"/>
+                <field name="package_price"/>
+                <field name="phone"/>
+                <field name="address"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    Search View-->
+    <record model="ir.ui.view" id="course_search_view">
+        <field name="name">client.search</field>
+        <field name="model">alnaggarnet.client</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="package_price"/>
+            </search>
+        </field>
+    </record>
+
+    <!--    Graph  View-->
+    <record model="ir.ui.view" id="course_graph_view">
+        <field name="name">client.Gantt</field>
+        <field name="model">alnaggarnet.client</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="package_price" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record model="ir.ui.view" id="view_alnaggarnet_client_kanban">
+        <field name="name">alnaggarnet.client.kanban</field>
+        <field name="model">alnaggarnet.client</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="max_speed">
+                <field name="color"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div
+                                t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                                  oe_kanban_global_click_edit oe_semantic_html_override
+                                                  oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                            <div class="oe_dropdown_kanban">
+                                <!-- dropdown menu -->
+                                <div class="oe_dropdown_toggle">
+                                    <i class="fa fa-bars fa-lg" title="Manage" aria-label="Manage"/>
+                                    <ul class="oe_dropdown_menu">
+                                        <li>
+                                            <a type="delete">Delete</a>
+                                        </li>
+                                        <li>
+                                            <ul class="oe_kanban_colorpicker"
+                                                data-field="color"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                            <div t-attf-class="oe_kanban_content">
+                                <!-- title -->
+                                Client name:
+                                <field name="name"/>
+                                <br/>
+                                Start date:
+                                <field name="start_date"/>
+                                <br/>
+                                phone:
+                                <field name="phone"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="client_list_action">
+        <field name="name">Al-naggar Net</field>
+        <field name="res_model">alnaggarnet.client</field>
+        <field name="view_mode">tree,form,graph,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create the first client
+            </p>
+        </field>
+    </record>
+
+
+    <!--
+         <record model="ir.actions.act_window" id="contact_list_action">
+            <field name="name">Contacts</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    -->
+
+
+    <menuitem id="main_alnaggarnet_menu" name="Al-naggar Net"/>
+    <menuitem id="alnaggarnet_menu" name="Clients" parent="main_alnaggarnet_menu"/>
+    <menuitem id="clients_menu" name="Clients" parent="alnaggarnet_menu" action="alnaggarnet.client_list_action"/>
+
+    <!--
+    <menuitem id="configuration_menu" name="Configuration" parent="main_alnaggarnet_menu"/>
+    <menuitem id="contact_menu" name="Contacts" parent="configuration_menu" action="contact_list_action"/>
+    -->
+</odoo>
