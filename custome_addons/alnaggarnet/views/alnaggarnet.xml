@@ -46,7 +46,7 @@
         <field name="name">client.tree</field>
         <field name="model">alnaggarnet.client</field>
         <field name="arch" type="xml">
-            <tree string="Client Tree" decoration-info="max_speed&lt;1024" decoration-danger="max_speed&gt;700">
+            <tree string="Client Tree" decoration-info="package_price&lt;1024" decoration-danger="package_price&gt;700">
                 <field name="name"/>
                 <field name="mac_address"/>
                 <field name="max_speed"/>
